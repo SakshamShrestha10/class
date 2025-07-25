@@ -1,0 +1,12 @@
+---
+- name: Copy config files
+  copy:
+    src: Apollo-master/
+    dest: /usr/share/nginx/html
+  notify:
+  - restart nginx
+
+- name: Copy nginx conf files
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/conf.d/

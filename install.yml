@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Remove softwares on redhat
+    yum:
+      name: "{{ item }}"
+      state: absent
+    loop:
+    - nginx
+    - vsftpd
+    - git
+    when: inventory_hostname in groups['test']
+
+  - name: Install on ubuntu
+    apt:
+      name: "{{ item }}"
+      state: latest
+    loop:
+    - nginx
+    - git
+    when: inventory_hostname in groups['dev']
+
+
