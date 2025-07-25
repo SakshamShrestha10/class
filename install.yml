@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: dev
   become: true
 
   tasks:
@@ -9,7 +9,6 @@
       state: absent
     loop:
     - nginx
-    - vsftpd
     - git
     when: inventory_hostname in groups['test']
 
@@ -20,6 +19,7 @@
     loop:
     - nginx
     - git
+    - docker
     when: inventory_hostname in groups['dev']
 
 
